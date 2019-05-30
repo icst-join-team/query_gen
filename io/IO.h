@@ -25,10 +25,10 @@ public:
 	bool input(std::vector<int>& node_list, std::vector<int>& edge_list, std::vector<int>& query_list);
 	bool input(Graph*& data_graph);
 	Graph* input_data();
-	// bool output(int qid);
-	// bool output();
-	// bool output(int* m, int size);
-	// void flush();
+	bool output(int qid);
+	bool output();
+	bool output(int* m, int size);
+	void flush();
 	~IO();
 
     std::string getOutputDIR() const
@@ -42,7 +42,7 @@ private:
 	std::string line;
 	int data_id;
 	// FILE* dfp;
-	// FILE* ofp;
+	FILE* ofp;
 
 	std::string query_req_path;
 	std::string data_path;

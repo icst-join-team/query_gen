@@ -224,47 +224,47 @@ IO::input(vector<int>& node_list, vector<int>& edge_list, vector<int>& query_lis
 	return true;
 }
 
-// bool 
-// IO::output(int qid)
-// {
-// 	fprintf(ofp, "query graph:%d    data graph:%d\n", qid, this->data_id);
-// 	fprintf(ofp, "%s\n", line.c_str());
-// 	return true;
-// }
+bool 
+IO::output(int qid)
+{
+	fprintf(ofp, "query graph:%d    data graph:%d\n", qid, this->data_id);
+	fprintf(ofp, "%s\n", line.c_str());
+	return true;
+}
 
-// bool
-// IO::output()
-// {
-// 	fprintf(ofp, "t # -1\n");
-// 	return true;
-// }
+bool
+IO::output()
+{
+	fprintf(ofp, "t # -1\n");
+	return true;
+}
 
-// bool 
-// IO::output(int* m, int size)
-// {
-// 	for(int i = 0; i < size; ++i)
-// 	{
-// 		fprintf(ofp, "(%d, %d) ", i, m[i]);
-// 	}
-// 	fprintf(ofp, "\n");
-// 	return true;
-// }
+bool 
+IO::output(int* m, int size)
+{
+	for(int i = 0; i < size; ++i)
+	{
+		fprintf(ofp, "(%d, %d) ", i, m[i]);
+	}
+	fprintf(ofp, "\n");
+	return true;
+}
 
-// void
-// IO::flush()
-// {
-// 	fflush(this->ofp);
-// }
+void
+IO::flush()
+{
+	fflush(this->ofp);
+}
 
 IO::~IO()
 {
-	// fclose(this->dfp);
-	// this->dfp = NULL;
-    // if(this->ofp != NULL)
-    // {
-    //     //NOTICE: fclose(NULL) will cause error, while fflush(NULL) is ok
-    //     fclose(this->ofp);
-    //     this->ofp = NULL;
-    // }
+	fclose(this->dfp);
+	this->dfp = NULL;
+    if(this->ofp != NULL)
+    {
+        //NOTICE: fclose(NULL) will cause error, while fflush(NULL) is ok
+        fclose(this->ofp);
+        this->ofp = NULL;
+    }
 }
 
