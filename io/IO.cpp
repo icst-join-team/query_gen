@@ -258,8 +258,7 @@ IO::flush()
 
 IO::~IO()
 {
-	fclose(this->dfp);
-	this->dfp = NULL;
+
     if(this->ofp != NULL)
     {
         //NOTICE: fclose(NULL) will cause error, while fflush(NULL) is ok
