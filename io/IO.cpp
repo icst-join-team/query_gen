@@ -36,7 +36,7 @@ IO::IO(string _query_req_path, string _data_path, string _output_dir)
 //		cerr<<"output open error!"<<endl;
 //		return;
 //	}
-    // this->ofp = NULL;
+    this->ofp = NULL;
     // this->output_directory = _dir;
     Util::create_dir(_output_dir);
 }
