@@ -12,8 +12,7 @@ using namespace std;
 
 IO::IO()
 {
-	this->dfp = NULL;
-	this->ofp = NULL;
+
 	this->data_id = -1;
 }
 
@@ -54,10 +53,10 @@ void IO::construct_index()
 
 	while(true)
 	{
-		char* s,p,o;
-		s=new char[200];
-		p=new char[200];
-		o=new char[200];
+		
+		char* s=new char[200];
+		char* p=new char[200];
+		char* o=new char[200];
 		if(!fscanf(data_file_ptr, "%s %s %s\n", s,p,o))
 		{
 			break;
@@ -259,13 +258,13 @@ IO::flush()
 
 IO::~IO()
 {
-	fclose(this->dfp);
-	this->dfp = NULL;
-    if(this->ofp != NULL)
-    {
-        //NOTICE: fclose(NULL) will cause error, while fflush(NULL) is ok
-        fclose(this->ofp);
-        this->ofp = NULL;
-    }
+	// fclose(this->dfp);
+	// this->dfp = NULL;
+    // if(this->ofp != NULL)
+    // {
+    //     //NOTICE: fclose(NULL) will cause error, while fflush(NULL) is ok
+    //     fclose(this->ofp);
+    //     this->ofp = NULL;
+    // }
 }
 

@@ -30,13 +30,10 @@ public:
 	bool output(int* m, int size);
 	void flush();
 	~IO();
-    FILE* getOFP() const
-    {
-        return this->ofp;
-    }
+
     std::string getOutputDIR() const
     {
-        return this->output_directory;
+        return this->output_dir;
     }
 
 	void construct_index();
