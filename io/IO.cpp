@@ -91,7 +91,7 @@ void IO::construct_index()
 Graph* 
 IO::input_data()
 {
-	Graph* ng = new Graph;
+	Graph* ng = new Graph();
 	FILE* data_file_ptr=fopen(data_path.c_str(),"r");
 	if(data_file_ptr == NULL)
 	{
@@ -108,10 +108,10 @@ IO::input_data()
 
 	while(true)
 	{
-		char* s,p,o;
-		s=new char[200];
-		p=new char[200];
-		o=new char[200];
+		
+		char* s=new char[200];
+		char* p=new char[200];
+		char* o=new char[200];
 		if(!fscanf(data_file_ptr, "%s %s %s\n", s,p,o))
 		{
 			break;
