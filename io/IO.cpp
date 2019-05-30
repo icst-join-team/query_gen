@@ -96,7 +96,7 @@ IO::input_data()
 	if(data_file_ptr == NULL)
 	{
 		cerr<<"data file open error!"<<endl;
-		return;
+		return NULL;
 	}
 
 	// we have known how many vertices in this graph
