@@ -44,6 +44,7 @@ IO::IO(string _query_req_path, string _data_path, string _output_dir)
 
 void IO::construct_index()
 {
+	printf("data path: %s\n",data_path.c_str());
 	FILE* data_file_ptr=fopen(data_path.c_str(),"r");
 	if(data_file_ptr == NULL)
 	{
