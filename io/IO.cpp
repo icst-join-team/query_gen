@@ -66,6 +66,8 @@ void IO::construct_index()
 		string predicate=p;
 		string object=o;
 
+		
+
 		delete []s;
 		delete []p;
 		delete []o;

@@ -1,1 +1,1 @@
-./run.exe road.info test.txt gen_query
+./run.exe data/num.nt test.txt gen_query
