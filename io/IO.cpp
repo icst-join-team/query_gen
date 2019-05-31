@@ -66,7 +66,7 @@ void IO::construct_index()
 		string predicate=p;
 		string object=o;
 
-		
+		printf("s:%s p:%s o:%s\n",s,p,o);
 
 		delete []s;
 		delete []p;
