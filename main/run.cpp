@@ -51,7 +51,7 @@ main(int argc, const char * argv[])
 
 	if(!io.input(data_graph))
 	{
-		break;
+		cout<<"read data graph error"<<endl;
 	}
 	cout << "one dataset read done!" << endl;
 	for(i = 0; i < qnum; ++i)
