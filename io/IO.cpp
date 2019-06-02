@@ -374,7 +374,8 @@ int IO::rand_if_var(double ratio)
 	int tmp_range=(int)(1/ratio);
 	printf("tmp_range: %d\n",tmp_range);
 	srand((unsigned)time(0)); 
-	int res=rand()%tmp_range;
+	int tmp_rand=rand();
+	int res=tmp_rand%tmp_range;
 	int ret;
 	if(res)
 	{
@@ -384,6 +385,6 @@ int IO::rand_if_var(double ratio)
 	{
 		ret=1;
 	}
-	printf("ret: %d\n",ret);
+	printf("tmp_rand: %d\n",tmp_rand);
 	return ret;
 }
