@@ -333,7 +333,7 @@ FILE* _sql_p, FILE* _res_p)
 		ss<<var_cnt;
 		ss>>tmp_name;
 		++var_cnt;
-		id2query_name.insert(pair<int,string>(tmp_id,tmp_name));
+		id2query_name.at(tmp_id)=tmp_name;
 		select_vec.push_back(tmp_name);
 		res_vec.push_back(this->id2name[tmp_id]);
 	}
@@ -343,6 +343,7 @@ FILE* _sql_p, FILE* _res_p)
 	{
 		fprintf(_res_p,"%s ",(*iter).c_str());
 	}
+	fprintf(_res_p,"\n");
 	fprintf(_sql_p,"select ");
 	for(vector<string>::iterator iter=select_vec.begin();iter!=select_vec.end();++iter)
 	{
