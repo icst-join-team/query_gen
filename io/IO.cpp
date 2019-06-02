@@ -373,7 +373,11 @@ int IO::rand_if_var(double ratio)
 	printf("ratio %lf\n",ratio);
 	int tmp_range=(int)(1/ratio);
 	printf("tmp_range: %d\n",tmp_range);
-	srand((unsigned)time(0)); 
+	srand(time(0)); 
+	//  LARGE_INTEGER seed;
+	// QueryPerformanceFrequency(&seed);
+	// QueryPerformanceCounter(&seed);
+	// srand(seed.QuadPart);
 	int tmp_rand=rand();
 	int res=tmp_rand%tmp_range;
 	int ret;
