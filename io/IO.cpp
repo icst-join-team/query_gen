@@ -309,7 +309,7 @@ FILE* _sql_p, FILE* _res_p)
 		if(is_var)
 		{
 			string tmp_name="?a";
-			tmp_name.append(itoa(var_cnt));
+			tmp_name+=to_string(var_cnt);
 			++var_cnt;
 			id2query_name.insert(pair<int,string>(tmp_id,tmp_name));
 			select_vec.insert(tmp_name);
