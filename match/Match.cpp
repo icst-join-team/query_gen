@@ -283,7 +283,11 @@ Match::match(IO& io)
                 string file = io.getOutputDIR() + "/q" + Util::int2string(Match::query_count) + ".g";
                 string sql_path=io.getOutputDIR() + "/q" + Util::int2string(Match::query_count) 
                 + ".sql";
+                string res_path=io.getOutputDIR() + "/res" + Util::int2string(Match::query_count)
+                +".txt";
                 FILE* ofp = fopen(file.c_str(), "w+");
+                FILE* sql_p=fopen(sql_path.c_str(),"w+");
+                FILE* res_p=fopen(res_path.c_str(),"w+");
 
                 fprintf(ofp, "t # %d\n", Match::query_count);
                 query_count++;
@@ -303,10 +307,14 @@ Match::match(IO& io)
                 {
                     fprintf(ofp, "e %d %d %d\n", edge[i]->first, edge[i]->second, elabel[i]);
                 }
-                io.create_sql(vlabel,edge);
 
                 fprintf(ofp, "t # -1\n");
                 fclose(ofp);
+
+                io.create_sql(vlabel,edge,elabel,sql_p,res_p);
+                
+                fclose(sql_p);
+                fclose(res_p);
 
                 for (int i = 0; i < edge.size(); i ++)
                     delete  edge[i];
