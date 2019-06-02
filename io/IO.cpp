@@ -334,8 +334,8 @@ FILE* _sql_p, FILE* _res_p)
 		ss>>tmp_name;
 		++var_cnt;
 		id2query_name.insert(pair<int,string>(tmp_id,tmp_name));
-		select_vec.insert(tmp_name);
-		res_vec.insert(this->id2name[tmp_id]);
+		select_vec.push_back(tmp_name);
+		res_vec.push_back(this->id2name[tmp_id]);
 	}
 
 	int edge_cnt=0;
