@@ -370,6 +370,7 @@ FILE* _sql_p, FILE* _res_p)
 
 int IO::rand_if_var(double ratio)
 {
+	printf("ratio %lf\n",ratio);
 	int tmp_range=(int)(1/ratio);
 	printf("tmp_range: %d\n",tmp_range);
 	srand((unsigned)time(NULL)); 
