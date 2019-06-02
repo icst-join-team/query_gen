@@ -384,6 +384,6 @@ int IO::rand_if_var(double ratio)
 	{
 		ret=1;
 	}
-	
+	printf("ret: %d\n",ret);
 	return ret;
 }
