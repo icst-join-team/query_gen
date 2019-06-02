@@ -58,7 +58,6 @@ void IO::construct_index()
 		char* s=new char[200];
 		char* p=new char[200];
 		char* o=new char[200];
-		char c;
 		int fscanf_ret=fscanf(data_file_ptr, "%s %s %s .\n", s,p,o);
 
 		if(fscanf_ret<0)
@@ -118,7 +117,10 @@ IO::input_data()
 		char* s=new char[200];
 		char* p=new char[200];
 		char* o=new char[200];
-		if(!fscanf(data_file_ptr, "%s %s %s\n", s,p,o))
+		
+		int fscanf_ret=fscanf(data_file_ptr, "%s %s %s .\n", s,p,o);
+
+		if(fscanf_ret<0)
 		{
 			break;
 		}
