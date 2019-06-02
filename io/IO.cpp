@@ -313,7 +313,6 @@ FILE* _sql_p, FILE* _res_p)
 			ss<<"?a";
 			ss<<var_cnt;
 			ss>>tmp_name;
-			tmp_name+=to_string(var_cnt);
 			++var_cnt;
 			id2query_name.insert(pair<int,string>(tmp_id,tmp_name));
 			select_vec.insert(tmp_name);
