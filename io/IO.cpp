@@ -327,8 +327,11 @@ FILE* _sql_p, FILE* _res_p)
 	if(select_vec.size()==0)
 	{
 		int tmp_id=_vlabel[0];
-		string tmp_name="?a";
-		tmp_name.append(itoa(var_cnt));
+		string tmp_name;
+		stringstream ss;
+		ss<<"?a";
+		ss<<var_cnt;
+		ss>>tmp_name;
 		++var_cnt;
 		id2query_name.insert(pair<int,string>(tmp_id,tmp_name));
 		select_vec.insert(tmp_name);
