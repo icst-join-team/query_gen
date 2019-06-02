@@ -10,11 +10,15 @@ example:
     ./test.sh
 
 ## Command Line Arguments
+
+example:(in test.sh)
+
+    ./run.exe data/num.nt test.txt gen_query
 data path, query pattern path, output directory
 
 ## Query pattern 
 
-example:
+example:(in test.txt)
 
     3 2 2
     4 3 1
