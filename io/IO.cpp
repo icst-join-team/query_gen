@@ -362,7 +362,7 @@ FILE* _sql_p, FILE* _res_p)
 		string s_sql_name=id2query_name[s_id];
 		string p_sql_name=id2query_name[p_id];
 		string o_sql_name=id2query_name[o_id];
-		fprintf("%s %s %s .\n",s_sql_name.c_str(),p_sql_name.c_str(),o_sql_name.c_str());
+		fprintf(_sql_p,"%s %s %s .\n",s_sql_name.c_str(),p_sql_name.c_str(),o_sql_name.c_str());
 	}
 	fprintf(_sql_p,"}\n");
 }
