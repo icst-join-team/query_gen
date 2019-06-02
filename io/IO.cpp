@@ -373,7 +373,7 @@ int IO::rand_if_var(double ratio)
 	printf("ratio %lf\n",ratio);
 	int tmp_range=(int)(1/ratio);
 	printf("tmp_range: %d\n",tmp_range);
-	srand((unsigned)time(NULL)); 
+	srand((unsigned)time(0)); 
 	int res=rand()%tmp_range;
 	int ret;
 	if(res)
