@@ -48,22 +48,21 @@ main(int argc, const char * argv[])
 //	long t2 = Util::get_cur_time();
 
 	Graph* data_graph = NULL;
-	while(true)
+
+	if(!io.input(data_graph))
 	{
-		if(!io.input(data_graph))
-		{
-			break;
-		}
-		cout << "one dataset read done!" << endl;
-		for(i = 0; i < qnum; ++i)
-		{
-			Match m(node_list[i], edge_list[i], query_list[i], data_graph);
-//			m.match(i);
-            m.match(io);
-		}
-//        io.output();
-		delete data_graph;
+		break;
 	}
+	cout << "one dataset read done!" << endl;
+	for(i = 0; i < qnum; ++i)
+	{
+		Match m(node_list[i], edge_list[i], query_list[i], data_graph);
+//			m.match(i);
+		m.match(io);
+	}
+//        io.output();
+	delete data_graph;
+
 
 //	cerr<<"match ended!"<<endl;
 //	long t3 = Util::get_cur_time();

@@ -96,7 +96,7 @@ void IO::construct_index()
 Graph* 
 IO::input_data()
 {
-	Graph* ng = new Graph();
+	Graph* ng = new Graph;
 	FILE* data_file_ptr=fopen(data_path.c_str(),"r");
 	if(data_file_ptr == NULL)
 	{
