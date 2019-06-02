@@ -308,7 +308,11 @@ FILE* _sql_p, FILE* _res_p)
 		}
 		if(is_var)
 		{
-			string tmp_name="?a";
+			string tmp_name;
+			stringstream ss;
+			ss<<"?a";
+			ss<<var_cnt;
+			ss>>tmp_name;
 			tmp_name+=to_string(var_cnt);
 			++var_cnt;
 			id2query_name.insert(pair<int,string>(tmp_id,tmp_name));
