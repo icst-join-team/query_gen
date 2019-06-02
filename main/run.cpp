@@ -21,6 +21,7 @@ vector<int> query_list;
 int
 main(int argc, const char * argv[])
 {
+	int var_ratio=0.5;
 	int i, j, k;
 
 	string output_dir = "query";
@@ -39,7 +40,7 @@ main(int argc, const char * argv[])
 	cerr<<"args all got!"<<endl;
 	long t1 = Util::get_cur_time();
 
-	IO io = IO(query_path, data_path, output_dir);
+	IO io = IO(query_path, data_path, output_dir,var_ratio);
 	//read query file and keep all queries in memory
 	io.input(node_list, edge_list, query_list);
 	int qnum = query_list.size();

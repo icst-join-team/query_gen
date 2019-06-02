@@ -15,13 +15,15 @@
 class IO
 {
 public:
+	double var_ratio;
+
 	std::set<std::string> names;
 	std::map<std::string,int> name2id;
 	std::map<int,std::string> id2name;
 
 
 	IO();
-	IO(std::string query, std::string data, std::string file);
+	IO(std::string query, std::string data, std::string file,double _var_ratio);
 	bool input(std::vector<int>& node_list, std::vector<int>& edge_list, std::vector<int>& query_list);
 	bool input(Graph*& data_graph);
 	Graph* input_data();
@@ -37,6 +39,11 @@ public:
     }
 
 	void construct_index();
+
+	void create_sql(std::vector<int> _vlabel, std::vector< std::pair<int,int>* >_edge,
+	std::vector<int> elabel,FILE* _sql_p, FILE* _res_p);
+
+	int rand_if_var(double ratio);
 
 private:
 	std::string line;

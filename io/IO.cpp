@@ -16,7 +16,7 @@ IO::IO()
 	this->data_id = -1;
 }
 
-IO::IO(string _query_req_path, string _data_path, string _output_dir)
+IO::IO(string _query_req_path, string _data_path, string _output_dir,double _var_ratio)
 {
 	this->data_id = -1;
 	this->line = "============================================================";
@@ -39,6 +39,7 @@ IO::IO(string _query_req_path, string _data_path, string _output_dir)
     this->ofp = NULL;
     // this->output_directory = _dir;
     Util::create_dir(_output_dir);
+	this->var_ratio=_var_ratio;
 }
 
 
@@ -275,3 +276,104 @@ IO::~IO()
     }
 }
 
+void IO::create_sql(std::vector<int> _vlabel, vector< pair<int,int>* >_edge,vector<int> _elabel,
+FILE* _sql_p, FILE* _res_p)
+{
+	set<int> id_set;
+	map<int,string> id2query_name;
+	vector<string> select_vec;
+	vector<string> res_vec;
+	for(vector<int>::iterator iter=_vlabel.begin();iter!=_vlabel.end();++iter)
+	{
+		id_set.insert(*iter);
+	}
+	for(vector<int>::iterator iter=_elabel.begin();iter!=_elabel.end();++iter)
+	{
+		id_set.insert(*iter);
+	}
+	int var_cnt=0;
+	
+	for(set<int>::iterator iter=id_set.begin();iter!=id_set.end();++iter)
+	{
+		int tmp_id=*iter;
+		int rand_ret=rand_if_var(this->var_ratio);
+		bool is_var;
+		if(rand_ret)
+		{
+			is_var=true;
+		}
+		else
+		{
+			is_var=false;
+		}
+		if(is_var)
+		{
+			string tmp_name="?a";
+			tmp_name.append(itoa(var_cnt));
+			++var_cnt;
+			id2query_name.insert(pair<int,string>(tmp_id,tmp_name));
+			select_vec.insert(tmp_name);
+			res_vec.insert(this->id2name[tmp_id]);
+		}
+		else
+		{
+			string tmp_name=this->id2name.at(tmp_id);
+			id2query_name.insert(pair<int,string>(tmp_id,tmp_name));
+		}	
+	}
+	if(select_vec.size()==0)
+	{
+		int tmp_id=_vlabel[0];
+		string tmp_name="?a";
+		tmp_name.append(itoa(var_cnt));
+		++var_cnt;
+		id2query_name.insert(pair<int,string>(tmp_id,tmp_name));
+		select_vec.insert(tmp_name);
+		res_vec.insert(this->id2name[tmp_id]);
+	}
+
+	int edge_cnt=0;
+	for(vector<string>::iterator iter=res_vec.begin();iter!=res_vec.end();++iter)
+	{
+		fprintf(_res_p,"%s ",(*iter).c_str());
+	}
+	fprintf(_sql_p,"select ");
+	for(vector<string>::iterator iter=select_vec.begin();iter!=select_vec.end();++iter)
+	{
+		fprintf(_sql_p,"%s ",(*iter).c_str());
+	}
+	fprintf(_sql_p,"where\n");
+	fprintf(_sql_p,"{\n");
+	for(vector< pair<int,int>* >::iterator iter=_edge.begin();iter!=_edge.end();++iter)
+	{
+		pair<int,int>* pair_ptr=*iter;
+		int v_left_pos=pair_ptr->first;
+		int v_right_pos=pair_ptr->second;
+		int s_id=_vlabel[v_left_pos];
+		int o_id=_vlabel[v_right_pos];
+		int p_id=_elabel[edge_cnt];
+		++edge_cnt;
+		string s_sql_name=id2query_name[s_id];
+		string p_sql_name=id2query_name[p_id];
+		string o_sql_name=id2query_name[o_id];
+		fprintf("%s %s %s .\n",s_sql_name.c_str(),p_sql_name.c_str(),o_sql_name.c_str());
+	}
+	fprintf(_sql_p,"}\n");
+}
+
+int IO::rand_if_var(double ratio)
+{
+	int tmp_range=int(1/ratio);
+	srand((unsigned)time(NULL)); 
+	int ret=rand()%tmp_range;
+	if(ret)
+	{
+		ret=0;
+	}
+	else
+	{
+		ret=1;
+	}
+	
+	return ret;
+}

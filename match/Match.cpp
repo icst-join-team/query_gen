@@ -281,6 +281,8 @@ Match::match(IO& io)
 
                 //output the query graph
                 string file = io.getOutputDIR() + "/q" + Util::int2string(Match::query_count) + ".g";
+                string sql_path=io.getOutputDIR() + "/q" + Util::int2string(Match::query_count) 
+                + ".sql";
                 FILE* ofp = fopen(file.c_str(), "w+");
 
                 fprintf(ofp, "t # %d\n", Match::query_count);
@@ -301,6 +303,7 @@ Match::match(IO& io)
                 {
                     fprintf(ofp, "e %d %d %d\n", edge[i]->first, edge[i]->second, elabel[i]);
                 }
+                io.create_sql(vlabel,edge);
 
                 fprintf(ofp, "t # -1\n");
                 fclose(ofp);
