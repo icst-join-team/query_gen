@@ -21,7 +21,7 @@ vector<int> query_list;
 int
 main(int argc, const char * argv[])
 {
-	int var_ratio=0.5;
+	double var_ratio=0.5;
 	int i, j, k;
 
 	string output_dir = "query";
